@@ -27,6 +27,3 @@ class Expense:
             date=data["date"],
             description=data["description"]
         )
-
-
-    

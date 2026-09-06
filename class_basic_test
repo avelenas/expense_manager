@@ -1,0 +1,26 @@
+from expences import Expense
+
+expense=Expense("Some title", 15.85, "Some category", "2026-09-06", "Some description")
+print(expense.title)
+print(expense.amount)
+print(expense.category)
+print(expense.date)
+print(expense.description)
+
+
+def test_expense_from_dict() -> None:
+    data = {
+        "title": "Some title",
+        "amount": 15.85,
+        "category": "Some category",
+        "date": "2026-09-06",
+        "description": "Some description"
+    }
+    expense = Expense.from_dict(data)
+print(expense.title)
+print(expense.amount)
+print(expense.category)
+print(expense.date)
+print(expense.description)
+
+print(str(expense))
