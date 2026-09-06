@@ -1,4 +1,4 @@
-from expences import Expense
+from expense import Expense
 
 expense=Expense("Some title", 15.85, "Some category", "2026-09-06", "Some description")
 print(expense.title)
