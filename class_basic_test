@@ -1,26 +1,96 @@
 from expense import Expense
+from expense_manager_logic import ExpenseManager
+
+### class Expense test
 
 expense=Expense("Some title", 15.85, "Some category", "2026-09-06", "Some description")
+print("\n ТЕСТ КЛАСУ Expense")
 print(expense.title)
 print(expense.amount)
 print(expense.category)
 print(expense.date)
 print(expense.description)
+print("\n ТЕСТ МЕтоду __str__()")
+print(str(expense))
 
 
 def test_expense_from_dict() -> None:
-    data = {
-        "title": "Some title",
-        "amount": 15.85,
-        "category": "Some category",
-        "date": "2026-09-06",
-        "description": "Some description"
-    }
+    print("\n ТЕСТ МЕТОДУ from_dict")
+    data = {"title": "Some title",
+            "amount": 15.85,
+            "category": "Some category",
+            "date": "2026-09-06",
+            "description": "Some description"}
     expense = Expense.from_dict(data)
-print(expense.title)
-print(expense.amount)
-print(expense.category)
-print(expense.date)
-print(expense.description)
+    print(expense.title)
+    print(expense.amount)
+    print(expense.category)
+    print(expense.date)
+    print(expense.description)
+    print(str(expense))
+test_expense_from_dict()
 
-print(str(expense))
+
+### class ExpenseManager test
+
+print("\n ТЕСТ КЛАСУ ExpenseManager")
+manager = ExpenseManager()
+expense = Expense("Some title", 15.85, "Some category", "2026-09-06", "Some description")
+manager.add_expense(expense)
+print(manager.expenses)
+print(expense)
+
+print("\n ТЕСТ МЕтоду delete_expense()")
+try_delete = manager.delete_expense("Some title")
+print(try_delete)
+print(manager.expenses)
+
+
+print("\n ТЕСТ МЕтоду get_expenses_by_category")
+def test_get_expenses_by_category() -> None:
+    manager = ExpenseManager()
+    expense1 = Expense("Вода", 40.81, "Їжа", "2026-09-06", "Для кави")
+    expense2 = Expense("Кросівки", 2600.00, "Одяг", "2026-09-04", "Для бігу")
+    expense3 = Expense("Підписка Ш телеграм", 1200.00, "Освіта", "2026-09-04", "Особисте")
+    expence4 = Expense("Молоко", 80.00, "Їжа", "2026-09-05", "Для кави")
+    manager.add_expense(expense1)
+    manager.add_expense(expense2)
+    manager.add_expense(expense3)
+    manager.add_expense(expence4)
+    expenses_by_category = manager.get_expenses_by_category("Їжа")
+    for expense in expenses_by_category:
+        print(expense)
+test_get_expenses_by_category()
+
+
+def test_get_total_expenses() -> None:
+    print("\n ТЕСТ МЕтоду get_total_expenses")
+    manager = ExpenseManager()
+    expense1 = Expense("Вода", 40.81, "Їжа", "2026-09-06", "Для кави")
+    expense2 = Expense("Кросівки", 2600.00, "Одяг", "2026-09-04", "Для бігу")
+    expense3 = Expense("Підписка Ш телеграм", 1200.00, "Освіта", "2026-09-04", "Особисте")
+    expence4 = Expense("Молоко", 80.00, "Їжа", "2026-09-05", "Для кави")
+    manager.add_expense(expense1)
+    manager.add_expense(expense2)
+    manager.add_expense(expense3)
+    manager.add_expense(expence4)
+    total_expenses = manager.get_total_expenses()
+    print(f"Загальна сума витрат: {total_expenses}")
+test_get_total_expenses()
+
+def test_total_expenses_empty() -> None:
+    print("\n ТЕСТ МЕтоду get_total_expenses")
+    manager = ExpenseManager()
+    total_expenses = manager.get_total_expenses()
+    print(f"Загальна сума витрат: {total_expenses}")
+test_total_expenses_empty()
+
+def test_show_all_expenses() -> None:
+    print("\n ТЕСТ МЕтоду show_all_expenses")
+    manager = ExpenseManager()
+    expense1 = Expense("Вода", 40.81, "Їжа", "2026-09-06", "Для кави")
+    expense2 = Expense("Кросівки", 2600.00, "Одяг", "2026-09-04", "Для бігу")
+    manager.add_expense(expense1)
+    manager.add_expense(expense2)
+    manager.show_all_expenses()
+test_show_all_expenses()
