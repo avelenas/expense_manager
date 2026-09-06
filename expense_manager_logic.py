@@ -25,7 +25,9 @@ class ExpenseManager:
         if not self.expenses:
             print("Немає витрат.")
             return
+        
+        print(f"{'Назва витрати':<20} | {'Дата':<12} | {'Категорія витрат':<15} | uah{'Сума':<10} | {'Додатковий коментар':<30}")
+
         for expense in self.expenses:
-            print("{Назва витрати:<20} | {Дата:<12} | {Категорія витрат:<15} | uah{Сума:<10} | {Додатковий коментар:<30}")
-            print("{self.title:<20} | {self.date:<12} | {self.category:<15} | uah{self.amount:<10} | {self.description:<30}")
+            print(f"{expense.title:<20} | {expense.date:<12} | {expense.category:<15} | uah{expense.amount:<10} | {expense.description:<30}")
 
