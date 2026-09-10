@@ -10,13 +10,20 @@ class ExpenseManager:
 
     def delete_expense(self, title: str) -> bool:
         for expense in self.expenses:
-            if expense.title == title:
+            if expense.title.lower() == title.lower():
                 self.expenses.remove(expense)
                 return True
         return False
 
+    def edit_expense(self, title: str, new_expense: Expense) -> bool:
+        for i, expense in enumerate(self.expenses):
+            if expense.title.lower() == title.lower():
+                self.expenses[i] = new_expense
+                return True
+        return False
+
     def get_expenses_by_category(self, category: str) -> list[Expense]:
-        return [expense for expense in self.expenses if expense.category == category]
+        return [expense for expense in self.expenses if expense.category.lower() == category.lower()]
 
     def get_total_expenses(self) -> float:
         return sum(expense.amount for expense in self.expenses)

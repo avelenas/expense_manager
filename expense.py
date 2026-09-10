@@ -6,7 +6,7 @@ class Expense:
         self.date: str = date
         self.description: str = description
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.title:<20} | {self.date:<12} | {self.category:<15} | uah{self.amount:<10} | {self.description:<30}"
 
     def to_dict(self) -> dict:
