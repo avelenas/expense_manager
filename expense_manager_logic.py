@@ -1,5 +1,6 @@
 from expense import Expense
-
+import json
+from pathlib import Path
 
 class ExpenseManager:
     def __init__(self) -> None:
@@ -38,3 +39,10 @@ class ExpenseManager:
         for expense in self.expenses:
             print(f"{expense.title:<20} | {expense.date:<12} | {expense.category:<15} | uah{expense.amount:<10} | {expense.description:<30}")
 
+    def save_expenses(self) -> None:
+        folder = Path("expenses.json")
+
+        data = [expense.to_dict() for expense in self.expenses]
+        with folder.open("w", encoding="utf-8") as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+            

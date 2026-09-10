@@ -94,3 +94,14 @@ def test_show_all_expenses() -> None:
     manager.add_expense(expense2)
     manager.show_all_expenses()
 test_show_all_expenses()
+
+
+def test_save_expenses() -> None:
+    manager = ExpenseManager()
+    expense = Expense("Кава", 15.5, "Їжа", "2026-09-10", "Для ранкового підйому")
+
+    manager.add_expense(expense)
+    manager.save_expenses()
+    print("JSON збережено!")
+    
+test_save_expenses()
