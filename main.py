@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from expense import Expense
 from expense_manager_logic import ExpenseManager
 import logging
@@ -22,7 +24,7 @@ def requested_description(info: str) -> str:
 def requested_float(info: str) -> float:
     while True:
         try:
-            amount = float(input("Введіть суму витрати: "))
+            amount = float(input(info))
             if amount < 0:
                 print("Сума витрати не може бути менше 0. Cпробуйте ще раз.")
             else:
@@ -30,12 +32,23 @@ def requested_float(info: str) -> float:
         except ValueError:
             print("Введіть цифрове значення.")
 
+def requested_date(info:str) -> str:
+    while True:
+        date_input = input(info).strip()
+        if not date_input:
+            return datetime.now().strftime("%Y-%m-%d")  # Return current date if input is empty
+        try:
+            date_object = datetime.strptime(date_input, "%d.%m.%Y")
+            return date_object.strftime("%Y-%m-%d")
+        except ValueError:
+            print("Неправильна дата. Приклад: 11.09.2026")
+
 def add_expense(expense_manager: ExpenseManager) -> None:
     title = requested_str("Введіть назву витрати: ")
     amount = requested_float("Введіть суму витрати: ")
     category = requested_str("Введіть категорію витрати: ")
-    date = requested_str("Введіть дату витрати (у форматі РРРР-ММ-ДД): ")
-    description = requested_description("Введіть додатковий коментар до витрати: ")
+    date = requested_date("Введіть дату витрати (у форматі РРРР-ММ-ДД): ")
+    description = requested_description("Введіть дату витрати (ДД.ММ.РРРР) або Enter для сьогодні: ")
 
     expense = Expense(title, amount, category, date, description)
     expense_manager.add_expense(expense)
@@ -61,7 +74,7 @@ def edit_expense(expense_manager: ExpenseManager) -> None:
             new_title = requested_str("Введіть нову назву витрати: ")
             new_amount = requested_float("Введіть нову суму витрати: ")
             new_category = requested_str("Введіть нову категорію витрати: ")
-            new_date = requested_str("Введіть нову дату витрати (у форматі РРРР-ММ-ДД): ")
+            new_date = requested_date("Введіть нову дату витрати (ДД.ММ.РРРР) або Enter для сьогодні: ")
             new_description = requested_description("Введіть новий додатковий коментар до витрати: ")
 
             new_expense = Expense(new_title, new_amount, new_category, new_date, new_description)
@@ -74,7 +87,7 @@ def edit_expense(expense_manager: ExpenseManager) -> None:
 
 
 def main() -> None:
-    logging.info("Expense Manager started.")
+    logging.info("Expense Manager запущено.")
     expense_manager = ExpenseManager()
     expense_manager.load_expenses()
 
@@ -118,6 +131,7 @@ def main() -> None:
                 print(f"\nЗагальна сума витрат: uah{total:.2f}")
             case 0:
                 print("Бувай! Приходь ще!")
+                logging.info("Expense Manager завершено.")
                 break
             case _:
                 print("Будь ласка, введіть дійсний номер дії.")

@@ -33,5 +33,12 @@
         "category": "Щось корисне",
         "date": "2026-09-11",
         "description": ""
+    },
+    {
+        "title": "Тортик",
+        "amount": 5000.0,
+        "category": "Їжа",
+        "date": "2026-09-11",
+        "description": ""
     }
 ]
