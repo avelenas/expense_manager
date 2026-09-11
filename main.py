@@ -32,11 +32,13 @@ def add_expense(expense_manager: ExpenseManager) -> None:
 
     expense = Expense(title, amount, category, date, description)
     expense_manager.add_expense(expense)
+    expense_manager.save_expenses()
     print(f"Витрата '{title}' додана.")
 
 def delete_expense(expense_manager: ExpenseManager) -> None:
     title = requested_str("Введіть назву витрати, яку хочете видалити: ")
     if expense_manager.delete_expense(title):
+        expense_manager.save_expenses()
         print(f"Витрата видалена.")
     else:
         print(f"Витрата '{title}' не знайдена.")
@@ -54,6 +56,7 @@ def edit_expense(expense_manager: ExpenseManager) -> None:
 
             new_expense = Expense(new_title, new_amount, new_category, new_date, new_description)
             expense_manager.edit_expense(title, new_expense)
+            expense_manager.save_expenses()
             print(f"Витрата '{title}' відредагована.")
             return
     print(f"Витрата '{title}' не знайдена.")

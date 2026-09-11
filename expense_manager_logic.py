@@ -52,6 +52,9 @@ class ExpenseManager:
         if not folder.exists():
             return
 
-        with folder.open("r", encoding="utf-8") as file:
-            data = json.load(file)
-        self.expenses = [Expense.from_dict(i) for i in data]
+        try:
+            with folder.open("r", encoding="utf-8") as file:
+                data = json.load(file)
+            self.expenses = [Expense.from_dict(i) for i in data]
+        except json.JSONDecodeError:
+            print("Не вдалось проситати json.")
