@@ -1,15 +1,36 @@
 [
     {
-        "title": "Кава",
-        "amount": 15.5,
+        "title": "Піца",
+        "amount": 50.0,
         "category": "Їжа",
-        "date": "2026-09-10",
-        "description": "Для ранкового підйому"
+        "date": "2026-09-11",
+        "description": ""
     },
     {
-        "title": "Pizza",
-        "amount": 40.0,
-        "category": "food",
+        "title": "дуже розумна книга",
+        "amount": 1000.0,
+        "category": "Освіта",
+        "date": "2026-09-11",
+        "description": ""
+    },
+    {
+        "title": "Смачна кава",
+        "amount": 400.0,
+        "category": "кафе",
+        "date": "2026-09-11",
+        "description": ""
+    },
+    {
+        "title": "сіль",
+        "amount": 500.0,
+        "category": "їжа",
+        "date": "2026-09-11",
+        "description": ""
+    },
+    {
+        "title": "Щось",
+        "amount": 1000.0,
+        "category": "Щось корисне",
         "date": "2026-09-11",
         "description": ""
     }
