@@ -40,13 +40,13 @@ manager.add_expense(expense)
 print(manager.expenses)
 print(expense)
 
-print("\n ТЕСТ МЕтоду delete_expense()")
+print("\n ТЕСТ Методу delete_expense()")
 try_delete = manager.delete_expense("Some title")
 print(try_delete)
 print(manager.expenses)
 
 
-print("\n ТЕСТ МЕтоду get_expenses_by_category")
+print("\n ТЕСТ Методу get_expenses_by_category")
 def test_get_expenses_by_category() -> None:
     manager = ExpenseManager()
     expense1 = Expense("Вода", 40.81, "Їжа", "2026-09-06", "Для кави")
@@ -64,7 +64,7 @@ test_get_expenses_by_category()
 
 
 def test_get_total_expenses() -> None:
-    print("\n ТЕСТ МЕтоду get_total_expenses")
+    print("\n ТЕСТ Методу get_total_expenses")
     manager = ExpenseManager()
     expense1 = Expense("Вода", 40.81, "Їжа", "2026-09-06", "Для кави")
     expense2 = Expense("Кросівки", 2600.00, "Одяг", "2026-09-04", "Для бігу")
@@ -79,14 +79,14 @@ def test_get_total_expenses() -> None:
 test_get_total_expenses()
 
 def test_total_expenses_empty() -> None:
-    print("\n ТЕСТ МЕтоду get_total_expenses")
+    print("\n ТЕСТ Методу get_total_expenses")
     manager = ExpenseManager()
     total_expenses = manager.get_total_expenses()
     print(f"Загальна сума витрат: {total_expenses}")
 test_total_expenses_empty()
 
 def test_show_all_expenses() -> None:
-    print("\n ТЕСТ МЕтоду show_all_expenses")
+    print("\n ТЕСТ Методу show_all_expenses")
     manager = ExpenseManager()
     expense1 = Expense("Вода", 40.81, "Їжа", "2026-09-06", "Для кави")
     expense2 = Expense("Кросівки", 2600.00, "Одяг", "2026-09-04", "Для бігу")
@@ -95,13 +95,19 @@ def test_show_all_expenses() -> None:
     manager.show_all_expenses()
 test_show_all_expenses()
 
-
 def test_save_expenses() -> None:
+    print("\n ТЕСТ Методу test_save_expenses")
     manager = ExpenseManager()
     expense = Expense("Кава", 15.5, "Їжа", "2026-09-10", "Для ранкового підйому")
-
     manager.add_expense(expense)
     manager.save_expenses()
     print("JSON збережено!")
-    
 test_save_expenses()
+
+def test_load_expenses() -> None:
+    print("\n ТЕСТ Методу test_load_expenses")
+    manager = ExpenseManager()
+    manager.load_expenses()
+    for expense in manager.expenses:
+        print(expense)
+test_load_expenses()

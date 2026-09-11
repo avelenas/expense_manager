@@ -61,6 +61,7 @@ def edit_expense(expense_manager: ExpenseManager) -> None:
 
 def main() -> None:
     expense_manager = ExpenseManager()
+    expense_manager.load_expenses()
 
     while True:
         print("\n====== Expense Manager MENU ======")
@@ -109,4 +110,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()   
-          

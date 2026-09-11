@@ -45,4 +45,13 @@ class ExpenseManager:
         data = [expense.to_dict() for expense in self.expenses]
         with folder.open("w", encoding="utf-8") as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
-            
+
+
+    def load_expenses(self) -> None:
+        folder = Path("expenses.json")
+        if not folder.exists():
+            return
+
+        with folder.open("r", encoding="utf-8") as file:
+            data = json.load(file)
+        self.expenses = [Expense.from_dict(i) for i in data]
