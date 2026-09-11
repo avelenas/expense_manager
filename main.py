@@ -1,5 +1,10 @@
 from expense import Expense
 from expense_manager_logic import ExpenseManager
+import logging
+
+logging.basicConfig(
+    filename="expense_manager.log",
+    level=logging.INFO)
 
 def requested_str(info: str) -> str:
     while True:
@@ -33,6 +38,7 @@ def add_expense(expense_manager: ExpenseManager) -> None:
     expense = Expense(title, amount, category, date, description)
     expense_manager.add_expense(expense)
     expense_manager.save_expenses()
+    logging.info(f"Додана витрата: {expense.to_dict()}")
     print(f"Витрата '{title}' додана.")
 
 def delete_expense(expense_manager: ExpenseManager) -> None:
@@ -63,6 +69,7 @@ def edit_expense(expense_manager: ExpenseManager) -> None:
 
 
 def main() -> None:
+    logging.info("Expense Manager started.")
     expense_manager = ExpenseManager()
     expense_manager.load_expenses()
 
